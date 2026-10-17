@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffc5df">
+<title>MANZZ STURE — Free Fire Store</title>
+<style>
+:root{--pink:#ffc5df;--pink2:#ff8fc5;--hot:#ed4b9b;--pale:#fff0f8;--ink:#51233d;--muted:#966b83;--white:#fff;--line:#f4c6df;--shadow:0 12px 32px #c43f841c}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#ffd6e9 0,#fff0f7 42%,#ffe6f1 100%);color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.wrap{width:min(1100px,92%);margin:auto}
+header{position:sticky;top:0;z-index:5;background:#ffeaf5ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.4px}.logo{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--pink),var(--hot));color:#fff;font-size:21px;box-shadow:0 5px 14px #ed4b9b35}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.6px}.nav-actions{display:flex;gap:8px}.btn{padding:10px 14px;border-radius:13px;font-weight:800;transition:.15s}.btn-primary{background:var(--hot);color:white;box-shadow:0 5px 14px #ed4b9b2b}.btn-light{background:#fff4fa;color:var(--ink);border:1px solid var(--line)}.btn:hover{transform:translateY(-1px)}
+.hero{padding:30px 0 22px}.hero-box{position:relative;overflow:hidden;border-radius:28px;padding:clamp(22px,5vw,48px);background:linear-gradient(115deg,#ffc5df,#ffacd1 55%,#ff8fc5);box-shadow:var(--shadow);border:1px solid #ffadd2}.hero-box:after{content:"💎";position:absolute;right:6%;top:12%;font-size:clamp(65px,12vw,130px);opacity:.25;transform:rotate(12deg)}.eyebrow{display:inline-block;background:#fff9;padding:7px 11px;border-radius:99px;font-size:12px;font-weight:900;letter-spacing:1px}.hero h1{font-size:clamp(32px,6vw,55px);line-height:1.06;margin:15px 0 12px;max-width:620px}.hero p{max-width:560px;color:#67475b;line-height:1.7;margin:0 0 20px}.hero .btn{position:relative;z-index:1}
+.section{padding:16px 0 30px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:15px}.section h2{font-size:23px;margin:0}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}.searchbar{display:flex;gap:9px;margin:18px 0 14px}.searchbar input{min-width:0;flex:1;padding:13px 15px;border-radius:14px;border:1px solid var(--line);outline:none;background:#fff}.searchbar input:focus,input:focus,select:focus{border-color:var(--pink2);box-shadow:0 0 0 3px #ffc5df55}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}.game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.game-btn{padding:16px 10px;border-radius:18px;background:#fff;border:1px solid var(--line);font-weight:750;color:var(--ink);box-shadow:0 5px 16px #b94d820b}.game-btn.active{background:#ffb8d9;border-color:var(--hot);color:#9e1d60}.chip{padding:8px 13px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:750;color:var(--muted)}.chip.active{background:var(--hot);color:#fff;border-color:var(--hot)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.product{border:1px solid #f1bdd7;border-radius:20px;overflow:hidden;background:#fffafd;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}.product-art{height:135px;display:grid;place-items:center;background:linear-gradient(135deg,#ffe3f0,#ffb8d9);font-size:58px;position:relative}.product-art span{filter:drop-shadow(0 6px 6px #aa3b7440)}.product-art img{width:100%;height:100%;object-fit:cover;display:block}.product-art .status{z-index:1}.status{position:absolute;top:11px;left:11px;background:#fff;color:#a33570;padding:5px 9px;border-radius:99px;font-size:10px;font-weight:900}.product-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.tag{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--hot);font-weight:900}.product h3{font-size:16px;line-height:1.35;margin:0}.desc{font-size:12px;color:var(--muted);line-height:1.5;margin:0}.price{font-size:19px;font-weight:900;color:#c52c7b;margin-top:auto;padding-top:4px}.product-actions{display:flex;gap:8px;margin-top:5px}.product-actions .btn{flex:1;padding:10px 8px;font-size:12px}
+.empty{grid-column:1/-1;text-align:center;padding:35px 15px;background:#fff;border:1px dashed var(--pink2);border-radius:18px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0 85px;text-align:center;color:var(--muted);font-size:12px}
+.overlay{position:fixed;inset:0;background:#6c234a77;z-index:10;display:none;align-items:flex-end;justify-content:center;padding:12px}.overlay.show{display:flex}.modal{background:#fffafd;width:min(600px,100%);max-height:90vh;overflow:auto;border-radius:24px;padding:20px;box-shadow:0 20px 70px #29152244}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal h2{margin:0 0 12px}.close{width:36px;height:36px;border-radius:12px;background:#ffe5f1;font-size:20px}.field{display:grid;gap:6px;margin:10px 0}.field label{font-size:12px;font-weight:800;color:var(--muted)}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;outline:none}.hint{font-size:12px;color:var(--muted);line-height:1.6}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.admin-list{display:grid;gap:8px;margin-top:14px}.admin-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px;background:white;font-size:13px}.danger{background:#ffe8ed;color:#b4234f}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-art{height:118px}.hero-box:after{right:2%;top:8%;font-size:70px;opacity:.18}.section-head{align-items:start;flex-direction:column}}
+@media(max-width:420px){.grid{gap:10px}.product-body{padding:11px}.product h3{font-size:14px}.price{font-size:17px}.product-actions{flex-direction:column}.nav-actions .btn{padding:9px 10px;font-size:12px}.brand{font-size:14px}.logo{width:37px;height:37px}.admin-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="brand"><div class="logo">M</div><div>MANZZ STURE<small>FREE FIRE STORE</small></div></div>
+  <div class="nav-actions"><button class="btn btn-light" id="adminOpen">⚙ DEV</button></div>
+</div></header>
+<main class="wrap">
+  <section class="hero"><div class="hero-box">
+    <span class="eyebrow">💗 PINK STORE • FREE FIRE</span>
+    <h1>Top up & item favoritmu, bestie!</h1>
+    <p>Selamat datang di MANZZ STURE. Pilih produk yang kamu mau, lalu tekan tombol beli untuk menanyakan stok dan memesan melalui WhatsApp.</p>
+    <button class="btn btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Lihat Produk ↓</button>
+  </div></section>
+  <section class="section" id="catalog">
+    <div class="section-head"><div><h2>🎮 Produk Free Fire</h2><p>Pilih produk, cek status stok, lalu pesan langsung melalui WhatsApp.</p></div></div>
+    <div class="searchbar"><input id="search" type="search" placeholder="🔎 Cari diamond, membership, voucher..."></div>
+    <div class="game-grid" id="gameFilters">
+      <button class="game-btn active" data-game="Semua">Semua Game</button>
+      <button class="game-btn" data-game="Mobile Legends">Mobile Legends</button>
+      <button class="game-btn" data-game="Free Fire">Free Fire</button>
+      <button class="game-btn" data-game="The Spike Cross">The Spike Cross</button>
+      <button class="game-btn" data-game="Roblox">Roblox</button>
+    </div>
+    <div class="section-head" style="margin-top:24px"><div><h2>Produk</h2><p>Pilih produk yang tersedia atau lihat stok habis.</p></div></div>
+    <div class="filters" id="filters">
+      <button class="chip active" data-status="Semua">Semua</button><button class="chip" data-status="Tersedia">Tersedia</button><button class="chip" data-status="Sold Out">Sold Out</button>
+    </div>
+    <div class="grid" id="products"></div>
+  </section>
+</main>
+<footer><div class="wrap">© <span id="year"></span> MANZZ STURE · Free Fire Store<br>Free Fire adalah merek dagang pemiliknya masing-masing. Toko ini bukan situs resmi Garena.</div></footer>
+<div class="overlay" id="adminModal"><div class="modal">
+  <div class="modal-head"><h2>⚙ Pengaturan Pemilik</h2><button class="close" data-close="adminModal">×</button></div>
+  <div id="adminLogin">
+    <p class="hint">Masukkan PIN admin untuk mengelola katalog di browser ini.</p>
+    <div class="field"><label>PIN admin</label><input id="adminPin" type="password" placeholder="PIN admin"></div>
+    <button class="btn btn-primary" id="loginBtn">Masuk</button>
+    <p class="hint">Penting: GitHub Pages adalah hosting statis. PIN di HTML bukan keamanan sungguhan dan produk yang disimpan di sini hanya tersimpan di browser/perangkat ini. Jangan masukkan data rahasia.</p>
+  </div>
+  <div id="adminPanel" hidden>
+    <p class="hint">Tambah produk, hapus produk, atau ubah status stok menjadi TERSEDIA / SOLD OUT. Harga harus angka, misalnya 15000. Data tersimpan di browser/perangkat ini saja.</p>
+    <div class="admin-grid">
+      <div class="field"><label>Nama produk</label><input id="pName" placeholder="Diamond 100"></div>
+      <div class="field"><label>Harga (Rp)</label><input id="pPrice" type="number" min="0" placeholder="15000"></div>
+      <div class="field"><label>Game</label><select id="pCat"><option>Free Fire</option><option>Mobile Legends</option><option>The Spike Cross</option><option>Roblox</option></select></div>
+      <div class="field"><label>Ikon jika tanpa gambar</label><select id="pIcon"><option>💎</option><option>🎁</option><option>⭐</option><option>🎮</option><option>💗</option></select></div>
+      <div class="field" style="grid-column:1/-1"><label>Gambar produk/game (opsional)</label><input id="pImage" type="file" accept="image/*"><small class="hint">Pilih gambar dari Galeri HP. Gambar akan diperkecil otomatis agar lebih ringan.</small><img id="pImagePreview" alt="Pratinjau gambar" hidden style="width:100%;max-height:180px;object-fit:contain;border-radius:12px;background:#fff0f8"></div>
+      <div class="field" style="grid-column:1/-1"><label>Keterangan</label><input id="pDesc" placeholder="Keterangan singkat produk"></div>
+    </div>
+    <button class="btn btn-primary" id="addProduct">＋ Tambah Produk</button>
+    <button class="btn btn-light" id="logoutBtn">Keluar admin</button>
+    <div class="admin-list" id="adminList"></div>
+    <button class="btn btn-light" style="margin-top:12px" id="resetProducts">Pulihkan produk contoh</button>
+  </div>
+</div></div>
+<script>
+/* PENGATURAN TOKO:
+   1) Nomor WhatsApp toko memakai format internasional tanpa + atau spasi.
+   2) Ganti ADMIN_PIN sebelum dipublikasikan. PIN sisi browser bukan perlindungan yang kuat.
+*/
+const WA_NUMBER = "6289525663079"; // Nomor WhatsApp pemesanan MANZZ STURE
+const ADMIN_PIN = "Kyzeen15"; // GANTI PIN ini sebelum dipublikasikan
+const starterProducts = [
+ {id:1,name:"Diamond Free Fire 70",price:10000,category:"Free Fire",icon:"💎",desc:"Paket diamond Free Fire.",status:"Tersedia",game:"Free Fire"},
+ {id:2,name:"Diamond Free Fire 140",price:20000,category:"Free Fire",icon:"💎",desc:"Paket diamond Free Fire.",status:"Tersedia",game:"Free Fire"},
+ {id:3,name:"Diamond Free Fire 355",price:50000,category:"Free Fire",icon:"💎",desc:"Paket diamond Free Fire.",status:"Tersedia",game:"Free Fire"},
+ {id:4,name:"Stock Free Fire #274",price:100000,category:"Free Fire",icon:"🎮",desc:"Akun game — periksa detail dan keamanan transaksi.",status:"Sold Out",game:"Free Fire"},
+ {id:5,name:"Stock Mobile Legends #275",price:50000,category:"Mobile Legends",icon:"🎮",desc:"Akun game — periksa detail dan keamanan transaksi.",status:"Tersedia",game:"Mobile Legends"},
+ {id:6,name:"The Spike Cross",price:15000,category:"The Spike Cross",icon:"🏐",desc:"Produk game — tanyakan ketersediaan.",status:"Tersedia",game:"The Spike Cross"},
+ {id:7,name:"Roblox Voucher",price:25000,category:"Roblox",icon:"🎁",desc:"Voucher digital — konfirmasi detail sebelum pembayaran.",status:"Tersedia",game:"Roblox"}
+];
+const $ = id => document.getElementById(id);
+const money = n => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
+let products = loadProducts(), activeGame = "Semua", activeStatus = "Semua", isAdmin = false;
+function loadProducts(){try{const p=JSON.parse(localStorage.getItem("manzz_products"));return Array.isArray(p)?p:starterProducts.slice()}catch(e){return starterProducts.slice()}}
+function saveProducts(){localStorage.setItem("manzz_products",JSON.stringify(products))}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderProducts(){
+ const q=$("search").value.trim().toLowerCase();
+ const list=products.filter(p=>(activeGame==="Semua"||(p.game||p.category)===activeGame)&&(activeStatus==="Semua"||(p.status||"Tersedia")===activeStatus)&&(`${p.name} ${p.category} ${p.desc||""}`).toLowerCase().includes(q));
+ $("products").innerHTML=list.length?list.map(p=>{
+  const sold=(p.status||"Tersedia")==="Sold Out";
+  return `<article class="product"><div class="product-art"><span class="status" style="${sold?"background:#ffe0e6;color:#b4234f":""}">${esc(p.status||"Tersedia").toUpperCase()}</span>${p.image?`<img src="${p.image}" alt="${esc(p.name)}">`:`<span>${esc(p.icon||"🎮")}</span>`}</div><div class="product-body"><div class="tag">${esc(p.game||p.category)}</div><h3>${esc(p.name)}</h3><p class="desc">${esc(p.desc||"Produk digital game.")}</p><div class="price">${money(Number(p.price)||0)}</div><div class="product-actions"><button class="btn btn-primary" style="width:100%" ${sold?'disabled style="opacity:.45;cursor:not-allowed"':''} onclick="buyNow(${Number(p.id)})">${sold?"STOK HABIS":"🛒 BELI VIA WHATSAPP"}</button></div></div></article>`;
+ }).join(""):`<div class="empty">Belum ada produk yang cocok 💗</div>`;
+}
+function buyNow(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ const status=p.status||"Tersedia";
+ if(status==="Sold Out"){toast("Produk sedang Sold Out.");return}
+ const msg=`Halo admin ManzSTR 👋😉\n\nSaya ingin order produk : 👇\n==========================\nProduk: ${p.name}\nGame: ${p.game||p.category||"Game"}\nHarga: ${money(Number(p.price)||0)}\nStatus: ${status.toUpperCase()}\n==========================\napakah produk ini masih Tersedia? jika masih saya Mau order 🤗`;
+ window.location.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+function openModal(id){$(id).classList.add("show");if(id==="adminModal")renderAdmin()}
+function closeModal(id){$(id).classList.remove("show")}
+function toast(msg){const t=document.createElement("div");t.textContent=msg;t.style.cssText="position:fixed;top:75px;left:50%;transform:translateX(-50%);background:#382333;color:white;padding:12px 16px;border-radius:12px;z-index:20;box-shadow:0 8px 25px #0002";document.body.appendChild(t);setTimeout(()=>t.remove(),1800)}
+function renderAdmin(){
+ $("adminLogin").hidden=isAdmin;$("adminPanel").hidden=!isAdmin;
+ if(!isAdmin)return;
+ $("adminList").innerHTML=products.map(p=>{
+   const status=(p.status||"Tersedia");
+   const sold=status==="Sold Out";
+   return `<div class="admin-row"><span><b>${esc(p.icon||"🎮")} ${esc(p.name)}</b><br>${money(Number(p.price)||0)} · ${esc(p.category)}<br><small style="font-weight:800;color:${sold?'#b4234f':'#17834b'}">${sold?'SOLD OUT':'TERSEDIA'}</small></span><div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end"><button class="btn ${sold?'btn-light':'btn-primary'}" onclick="toggleProductStatus(${Number(p.id)})">${sold?'Jadikan Tersedia':'Tandai Sold Out'}</button><button class="btn danger" onclick="deleteProduct(${Number(p.id)})">Hapus</button></div></div>`;
+ }).join("")||"<p class='hint'>Belum ada produk.</p>";
+}
+function toggleProductStatus(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ p.status=(p.status||"Tersedia")==="Sold Out"?"Tersedia":"Sold Out";
+ saveProducts();renderProducts();renderAdmin();toast(p.status==="Sold Out"?"Produk ditandai SOLD OUT.":"Produk ditandai TERSEDIA.");
+}
+function deleteProduct(id){products=products.filter(p=>p.id!==id);saveProducts();renderProducts();renderAdmin()}
+$("search").addEventListener("input",renderProducts);
+$("gameFilters").addEventListener("click",e=>{const b=e.target.closest("[data-game]");if(!b)return;activeGame=b.dataset.game;document.querySelectorAll(".game-btn").forEach(x=>x.classList.toggle("active",x===b));renderProducts()});
+$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-status]");if(!b)return;activeStatus=b.dataset.status;document.querySelectorAll("#filters .chip").forEach(x=>x.classList.toggle("active",x===b));renderProducts()});
+$("adminOpen").onclick=()=>openModal("adminModal");
+document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)}));
+$("loginBtn").onclick=()=>{if($("adminPin").value===ADMIN_PIN){isAdmin=true;$("adminPin").value="";renderAdmin()}else alert("PIN admin salah.")};
+$("logoutBtn").onclick=()=>{isAdmin=false;renderAdmin()};
+let selectedProductImage = "";
+function compressImage(file){
+ return new Promise((resolve,reject)=>{
+  if(!file){resolve("");return}
+  if(!file.type.startsWith("image/")){reject(new Error("Pilih file gambar."));return}
+  const reader=new FileReader();
+  reader.onerror=()=>reject(new Error("Gambar gagal dibaca."));
+  reader.onload=()=>{
+   const img=new Image();
+   img.onerror=()=>reject(new Error("Gambar tidak valid."));
+   img.onload=()=>{
+    const max=700,scale=Math.min(1,max/Math.max(img.width,img.height));
+    const canvas=document.createElement("canvas");
+    canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));
+    canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+    resolve(canvas.toDataURL("image/jpeg",0.72));
+   };
+   img.src=reader.result;
+  };
+  reader.readAsDataURL(file);
+ });
+}
+$("pImage").addEventListener("change",async()=>{
+ const file=$("pImage").files[0];selectedProductImage="";
+ if(!file){$("pImagePreview").hidden=true;return}
+ try{selectedProductImage=await compressImage(file);$("pImagePreview").src=selectedProductImage;$("pImagePreview").hidden=false}
+ catch(e){alert(e.message);$("pImage").value="";$("pImagePreview").hidden=true}
+});
+$("addProduct").onclick=async()=>{
+ const name=$("pName").value.trim(),price=Number($("pPrice").value);
+ if(!name||$("pPrice").value===""||!Number.isFinite(price)||price<0){alert("Isi nama produk dan harga yang valid.");return}
+ const button=$("addProduct");button.disabled=true;button.textContent="Menyimpan...";
+ try{
+  products.unshift({id:Date.now(),name,price,category:$("pCat").value,game:$("pCat").value,icon:$("pIcon").value,image:selectedProductImage,desc:$("pDesc").value.trim()||"Produk digital game.",status:"Tersedia"});
+  saveProducts();renderProducts();renderAdmin();$("pName").value="";$("pPrice").value="";$("pDesc").value="";$("pImage").value="";$("pImagePreview").hidden=true;selectedProductImage="";toast("Produk ditambahkan dengan gambar jika dipilih.");
+ }catch(e){alert("Gagal menyimpan. Penyimpanan browser mungkin penuh. Coba gambar lain yang lebih kecil.");}
+ finally{button.disabled=false;button.textContent="＋ Tambah Produk"}
+};
+$("resetProducts").onclick=()=>{if(confirm("Pulihkan katalog produk contoh? Produk buatanmu akan diganti.")){products=starterProducts.slice();saveProducts();renderProducts();renderAdmin()}};
+$("year").textContent=new Date().getFullYear();renderProducts();
+</script>
+</body>
+</html>
